@@ -1,0 +1,25 @@
+name: Validate hosting scaffold
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Validate Codespaces configuration JSON
+        run: python -m json.tool .devcontainer/devcontainer.json > /dev/null
+      - name: Check deployment documentation exists
+        run: |
+          test -s README.md
+          test -s docs/deployment-checklist.md
+          grep -q 'Pterodactyl' README.md
+          grep -q 'Wings' docs/deployment-checklist.md
