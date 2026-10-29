@@ -1,0 +1,17 @@
+{
+  "name": "Pterodactyl deployment workspace",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "redhat.vscode-yaml"
+      ]
+    }
+  },
+  "postCreateCommand": "git --version",
+  "remoteUser": "vscode"
+}
